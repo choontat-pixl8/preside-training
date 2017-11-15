@@ -1,9 +1,14 @@
 <cfscript>
-	pricePerSeat  = args.pricePerSeat ?: 0    ;
-	minSeatCount  = args.minValue     ?: 0    ;
-	maxSeatCount  = args.maxValue     ?: 0    ;
-	requiredField = args.required     ?: false;
-	inputName     = args.name         ?: ""   ;  
+	pricePerSeat  = args.pricePerSeat  ?: 0    ;
+	remainingSeat = args.remainingSeat ?: 0    ;
+	minSeatCount  = args.minValue      ?: 0    ;
+	maxSeatCount  = args.maxValue      ?: 0    ;
+	requiredField = args.required      ?: false;
+	inputName     = args.name          ?: ""   ;
+
+	if ( remainingSeat < maxSeatCount && remainingSeat > 0 ) {
+		maxSeatCount = remainingSeat;
+	}
 </cfscript>
 
 <cfoutput>
@@ -18,6 +23,8 @@
 	<label>
 		Total: MYR
 		<label id="total-seat-price">0</label>
+		<br/>
+		Remaining seats: #remainingSeat GT 0 ? remainingSeat : "unlimited"#
 	</label>
 	<script>
 		(function(){
@@ -30,7 +37,7 @@
 					if ( isNaN( value ) || value < #minSeatCount# ) {
 						return 0;
 					} else if ( value > #maxSeatCount# ){
-						return 10;
+						return #maxSeatCount#;
 					}
 
 					return value;

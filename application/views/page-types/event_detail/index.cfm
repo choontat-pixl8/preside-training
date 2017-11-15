@@ -37,7 +37,16 @@
 		<script src="https://#disqusPublicId#.disqus.com/embed.js" data-timestamp="#getTickCount()#" defer></script>
 
 	<cfelseif args.isEventBookeable>
-		<a href="#event.buildLink( page="event_booking" ,querystring="eventId=#event.getCurrentPageId()#")#">Book now!</a>
+		<cfif args.seatFullyBooked>
+			<div class="alert alert-info">Seat fully booked.</div>
+		<cfelse>
+			<a 
+				class="btn btn-success"
+				href="#event.buildLink( page="event_booking" ,querystring="eventId=#event.getCurrentPageId()#")#">
+					Book now!
+			</a>
+		</cfif>
+		
 	</cfif>
 
 </cfoutput>

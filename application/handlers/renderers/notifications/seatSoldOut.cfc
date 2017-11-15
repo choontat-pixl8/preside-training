@@ -1,12 +1,13 @@
 component {
-	property name="eventBookingService" inject="eventBookingService";
+	property name="eventService" inject="eventService";
 
 	private string function datatable( event, rc, prc, args={} ){
-		return _getNotificationSubject( args.bookingId?:"" );
+		return _getNotificationSubject( args.eventId?:"" );
 	}
 
 	private string function full( event, rc, prc, args={} ){
-
+		var bookersDetail = eventService.getBookersDetailById( args.eventId?:"" );
+		return renderView( view="renderers/notifications/seatSoldOut/full", args={ "bookersDetail"=bookersDetail } );
 	}
 
 	private string function emailSubject( event, rc, prc, args={} ){
@@ -21,13 +22,13 @@ component {
 
 	}
 
-	private string function _getNotificationSubject( required string bookingId ){
-		var eventName = eventBookingService.getEventNameById( bookingId );
+	private string function _getNotificationSubject( required string eventId ){
+		var eventName = eventService.getEventNameById( eventId );
 
 		return "Event fully booked for " & ( eventName?:"" );
 	}
 
-	private struct function _getNotificationDetails( required string bookingId ){
+	private struct function _getNotificationDetails( required string eventId ){
 
 	}
 }

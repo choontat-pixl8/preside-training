@@ -23,7 +23,7 @@
 			</field>
 
 			<field name="seat_count"      control="eventSeatSelector" required="true" minValue="1" maxValue="10" />
-			<field name="sessions"        control="sessionCheckboxes" required="true" object="event_detail.id"   />
+			<field name="sessions"        control="sessionCheckboxes" required="true" />
 			<field name="special_request" control="textarea"                          maxlength="250"            />
 		</fieldset>
 	</tab>
