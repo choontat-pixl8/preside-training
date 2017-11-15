@@ -10,7 +10,8 @@ component {
 	}
 
 	private function index( event, rc, prc, args={} ) {
-		args.validEventId = eventService.isEventBookeable( rc.eventId?:"" );
+		args.validEventId    = eventService.isEventBookeable ( rc.eventId?:"" );
+		args.seatFullyBooked = eventService.isSeatFullyBooked( rc.eventId?:"" );
 
 		return renderView(
 			  view          = 'page-types/event_booking/index'
@@ -24,8 +25,9 @@ component {
 		var formData         = event.getCollectionForForm( "event.booking" );
 		var validationResult = validateForm( "event.booking", formData );
 		var validInputs      = ( len ( validationResult.listErrorFields() ) == 0 );
+		var seatFullyBooked  = eventService.isSeatFullyBooked( rc.eventId?:"" );
 
-		if ( validInputs ) {
+		if ( validInputs && !seatFullyBooked ) {
 			var pricePerSeat = eventService.getPricePerSeatByEventId( rc.eventId?:"" )?:0;
 
 			formData.priceInMYR = pricePerSeat * ( formData.seat_count?:0 );
@@ -48,9 +50,10 @@ component {
 		setNextEvent(
 			  url           = event.buildLink( page="event_booking", queryString="eventId="&( rc.eventId?:"" ) )
 			, persistStruct = {
-				  success          = validInputs
+				  success          = validInputs && !seatFullyBooked
 				, args             = args
 				, validationResult = validationResult
+				, formData         = formData
 			}
 		 );
 	}
