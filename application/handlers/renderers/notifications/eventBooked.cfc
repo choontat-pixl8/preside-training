@@ -7,7 +7,7 @@ component {
 
 	private string function full( event, rc, prc, args={} ){
 		var bookingDetail       = eventBookingService.getBookingDetailById( args.bookingId?:"" );
-		var notificationDetails = this._getNotificationDetails( args.bookingId?:"" );
+		var notificationDetails = _getNotificationDetails( args.bookingId?:"" );
 
 		event.include( "css-notification-full" );
 

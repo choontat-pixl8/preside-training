@@ -9,6 +9,7 @@ component {
 		args.event            = EventService.getEventDetail( pageId );
 		args.isEventExpired   = EventService.isEventExpired( pageId );
 		args.isEventBookeable = EventService.isEventBookeable( pageId );
+		args.seatFullyBooked  = EventService.isSeatFullyBooked( pageId );
 		
 		return renderView(
 			  view          = "page-types/event_detail/index"

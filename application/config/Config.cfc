@@ -37,5 +37,16 @@ component extends="preside.system.config.Config" {
 		};
 
 		settings.notificationTopics.append( "eventBooked" );
+		//settings.notificationTopics.append( "seatSoldOut" );
+
+		_setupInterceptors();
+
+		coldbox.requestContextDecorator = "app.decorators.RequestContextDecorator";
+	}
+
+	private void function _setupInterceptors(){
+
+		interceptors.append( { class="app.interceptors.SeatSoldOutInterceptor",       properties={} } );
+
 	}
 }

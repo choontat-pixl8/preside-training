@@ -11,7 +11,7 @@ component {
 
 	public string function makeBooking( required struct bookingDetail ){
 		var insertedId = _getBookingDetail().insertData( data=bookingDetail, insertManyToManyRecords=true );
-		//$sendEmail( template="eventBookingConfirmation", to=[ bookingDetail.email ], args=bookingDetail );
+		
 		return insertedId;
 	}
 
@@ -37,6 +37,17 @@ component {
 		bookingDetail.sessions = eventSessions;
 
 		return bookingDetail;
+	}
+
+	public string function getEventIdById( required string bookingId ){
+		return _getBookingDetail().selectData( selectFields=[ "event_detail.id as eventId" ], filter={ "id"=bookingId } ).eventId?:"";
+	}
+
+	public string function getEventNameById( required string bookingId ){
+		return _getBookingDetail().selectData(
+			  selectFields = [ "event_detail.event_name as eventName" ]
+			, filter       = { "id"=bookingId }
+		).eventName?:"";
 	}
 
 	public string function getBookerFullNameById( required string bookingId ){

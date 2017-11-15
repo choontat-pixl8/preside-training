@@ -92,6 +92,18 @@ component {
 		);
 	}
 
+	public query function getBookersDetailById( required string eventId ){
+		var selectFields = [
+			  "booking.first_name AS firstName"
+			, "booking.last_name  AS lastName"
+			, "booking.email      AS emailAddress"
+			, "booking.seat_count AS seatsBooked"
+			, "booking.priceInMYR AS feeChargedInMYR"
+		];
+
+		return _getEventDetail().selectData( selectFields=selectFields, filter={ "event_detail.id"=eventId }, groupBy="booking.id" );
+	}
+
 	public numeric function getPricePerSeatByEventId( required string eventId ){
 		var pricePerSeat = _getEventDetail().selectData(
 			selectFields=[ "event_detail.price" ]
@@ -99,6 +111,32 @@ component {
 		).price;
 
 		return val( pricePerSeat );
+	}
+
+	public numeric function getRemainingSeatCountByEventId( required string eventId ){
+		var selectFields = [
+			  "booking.seat_count AS seatBooked"
+			, "event_detail.seat_limit   AS seatLimit"
+		];
+		var seatInfo     = _getEventDetail().selectData(
+			  selectFields = selectFields
+			, filter       = { "event_detail.id"=eventId }
+			, groupBy      = "booking.id"
+		);
+		var seatBooked = seatInfo.columnData( "seatBooked" ).sum();
+
+		if ( val( seatInfo.seatLimit ) == 0 ) {
+			return -1;
+		}
+		else if ( seatBooked > val( seatInfo.seatLimit ) ) {
+			return 0;
+		}
+
+		return val( seatInfo.seatLimit ) - seatBooked;
+	}
+
+	public string function getEventNameById( required string eventId ){
+		return _getEventDetail().selectData( selectFields=[ "event_name" ], filter={ "id"=eventId } ).event_name?:"";
 	}
 
 	public boolean function isEventExpired( required string eventId ){
@@ -115,6 +153,10 @@ component {
 			  selectFields=[ "event_detail.bookeable" ]
 			, filter={ "page.id"=eventId }
 		).bookeable == '1' ? true : false;
+	}
+
+	public boolean function isSeatFullyBooked( required string eventId ){
+		return getRemainingSeatCountByEventId( eventId ) == 0;
 	}
 
 	private any function _getEventDetail(){

@@ -18,5 +18,5 @@ component {
 	property name="end_date"   type="date"    dbtype="date";
 	property name="bookeable"  type="boolean" dbtype="bit";
 	property name="price"      type="numeric" dbtype="double";
-
+	property name="seat_limit" type="numeric" dbtype="int" default="0";
 }
