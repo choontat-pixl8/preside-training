@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form i18nBaseUri="page-types.event_detail:">
+	<tab id="event_detail">
+		<fieldset id="event_detail">
+			<field binding="event_detail.event_name"                                              />
+			<field binding="event_detail.start_date"                                              />
+			<field binding="event_detail.end_date"                                                />
+			<field binding="event_detail.regions"                                                 />
+			<field binding="event_detail.category"                                                />
+			<field binding="event_detail.programmes"                                              />
+			<field binding="event_detail.event_sessions"                                          />
+			<field binding="event_detail.document"       control="assetPicker" allowedTypes="pdf" />
+		</fieldset>
+		<fieldset id="booking_detail">
+			<field binding="event_detail.bookeable"                          />
+			<field binding="event_detail.price" minValue="0" maxValue="1000" />	
+		</fieldset>
+	</tab>
+</form>

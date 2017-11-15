@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form i18nBaseUri="widgets.video:">
+    <tab id="basic">
+        <fieldset id="basic" sortorder="10">
+            <field name="title"   control="textinput" required="true" />
+            <field name="videoId" control="textinput" required="true" />
+        </fieldset>
+    </tab>
+
+    <tab id="dimension">
+    	<fieldset id="dimension">
+    		<field name="dimensions" control="imageDimensions" required="true" />
+    	</fieldset>
+    	<fieldset id="measurement">
+    		<field 
+                name    = "widthMeasurement" 
+                control = "select" 
+                values  = "px,%" 
+                labels  = "widgets.video:measurement.pixel,widgets.video:measurement.percentage" />
+    		<field 
+                name    = "heightMeasurement" 
+                control = "select" 
+                values  = "px,%" 
+                labels  = "widgets.video:measurement.pixel,widgets.video:measurement.percentage" />
+    	</fieldset>
+    </tab>
+</form>

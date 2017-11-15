@@ -1,0 +1,14 @@
+{
+    "name":"Practice Preside",
+    "version":"1.0.0",
+    "author":"Choon Tat",
+    "slug":"practicepreside",
+    "createPackageDirectory" : false,
+    "private":true,
+    "installPaths":{
+        "presidecms":"preside"
+    },
+    "dependencies":{
+        "presidecms":"stable"
+    }
+}

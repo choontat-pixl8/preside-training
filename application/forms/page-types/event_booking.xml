@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form i18nBaseUri="page-types.event_booking:">
+	<tab id="messages">
+		<fieldset id="event_detail">
+			<field name="success_message" />
+			<field name="error_message" />
+		</fieldset>
+	</tab>
+</form>

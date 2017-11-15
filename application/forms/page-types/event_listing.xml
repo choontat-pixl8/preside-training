@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form i18nBaseUri="page-types.event_listing:">
+	<tab id="event_listing">
+		<fieldset id="event_listing">
+			<field binding="event_listing.feature_event" />
+			<field binding="event_listing.region"        />
+			<field binding="event_listing.categories"    />
+		</fieldset>
+	</tab>
+</form>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form i18BaseUri="programme:">
+	<tab id="programme">
+		<fieldset id="programme">
+			<field binding="programme.label"          />
+			<field binding="programme.start_datetime" />
+		</fieldset>
+	</tab>
+</form>

@@ -1,0 +1,12 @@
+.notification-full .input-group:not(:nth-last-child(1)){
+	margin-bottom: 5px;
+}
+
+.notification-full .input-group-addon{
+	min-width  : 150px;
+	text-align : left;
+}
+
+.notification-full input:read-only{
+	padding-left: 10px;
+}
