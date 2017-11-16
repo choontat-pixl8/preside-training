@@ -10,6 +10,7 @@
 
 	<form method="POST" action="#event.buildLink()#">
 		<label>Filter Events By Region</label>
+		
 		<div class="input-group">
 			<span class="input-group-addon">
 				Select Region

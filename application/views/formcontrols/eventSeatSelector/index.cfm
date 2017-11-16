@@ -1,10 +1,10 @@
 <cfscript>
-	pricePerSeat  = args.pricePerSeat  ?: 0    ;
-	remainingSeat = args.remainingSeat ?: 0    ;
-	minSeatCount  = args.minValue      ?: 0    ;
-	maxSeatCount  = args.maxValue      ?: 0    ;
+	pricePerSeat  = args.pricePerSeat  ?: 0;
+	remainingSeat = args.remainingSeat ?: 0;
+	minSeatCount  = args.minValue      ?: 0;
+	maxSeatCount  = args.maxValue      ?: 0;
 	requiredField = args.required      ?: false;
-	inputName     = args.name          ?: ""   ;
+	inputName     = args.name          ?: "";
 
 	if ( remainingSeat < maxSeatCount && remainingSeat > 0 ) {
 		maxSeatCount = remainingSeat;
@@ -19,7 +19,7 @@
 		class          = "form-control"
 		min            = "#minSeatCount#"
 		max            = "#maxSeatCount#" 
-		#requiredField ? "required":""# />
+		#requiredField ? "required" : ""# />
 	<label>
 		Total: MYR
 		<label id="total-seat-price">0</label>

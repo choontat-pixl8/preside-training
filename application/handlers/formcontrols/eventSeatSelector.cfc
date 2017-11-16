@@ -2,10 +2,10 @@ component {
 	property name="eventService" inject="EventService";
 
 	public function index( event, rc, prc, args={} ){
-		var eventId = rc.eventId?:"";
+		var eventId       = rc.eventId?:"";
 		var remainingSeat = eventService.getRemainingSeatCountByEventId( eventId );
 
-		args.pricePerSeat = eventService.getPricePerSeatByEventId( eventId );
+		args.pricePerSeat  = eventService.getPricePerSeatByEventId( eventId );
 		args.remainingSeat = remainingSeat;
 
 		if ( !isDefined( args.name ) && isDefined( args.binding ) ) {

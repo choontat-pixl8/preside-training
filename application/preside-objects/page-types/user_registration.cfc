@@ -1,7 +1,8 @@
 /**
- * @isSystemPageType true
+ * @isSystemPageType     true
+ * @feature websiteUsers
  */
-component  {
+component{
 	property name="success_message";
 	property name="error_message";
 }

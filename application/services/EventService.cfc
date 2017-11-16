@@ -15,18 +15,18 @@ component {
 				  "page.id"
 				, "page.title"
 				, "page.parent_page"
-				, "regions.id as regionId"
 				, "event_detail.document"
-				, "document.title as documentTitle"
+				, "regions.id     AS regionId"
+				, "document.title AS documentTitle"
 			]
-			, filter={ id=arguments.id }
+			, filter     = { id=arguments.id }
 		);
 	}
 
 	public array function getRegions( required string eventDetailId ){
 		var eventRegions = _getEventDetail().selectData(
-			  selectFields = [ "regions.id as regionId" ]
-			, filter       = { id=arguments.eventDetailId }
+			  selectFields = [ "regions.id AS regionId" ]
+			, filter       = { id=eventDetailId }
 		);
 		return ValueArray( eventRegions.regionId );
 	}
@@ -41,24 +41,28 @@ component {
 		var filter      = { "page.parent_page"=arguments.listingPageId };
 
 		if ( len( Trim( arguments.regions ) ) ) {
-            filter["regions.id"] = ListToArray( arguments.regions );
+            filter[ "regions.id" ] = ListToArray( arguments.regions );
         }
 
 		return _getEventDetail().selectData( selectFields=selectFields, filter=filter );
 	}
 
 	public query function getRelatedEvents( required string listingPageId, required string eventDetailId ){
-		var relatedRegions = getRegions( arguments.eventDetailId );
-		var selectFields = [
+		var relatedRegions = getRegions( eventDetailId );
+		var selectFields   = [
 			  "page.id"
 			, "page.title"
 			, "event_detail.start_date"
 			, "event_detail.end_date"
 		];
-		var filter = "page.parent_page = :page.parent_page and page.id != :page.id and regions.id IN (:regions.id)";
-		var filterParams = {
-			  "page.parent_page" = arguments.listingPageId
-			, "page.id"          = arguments.eventDetailId
+		var filter         = "
+			    page.parent_page =  :page.parent_page 
+			AND page.id          != :page.id 
+			AND regions.id       IN (:regions.id)
+		";
+		var filterParams   = {
+			  "page.parent_page" = listingPageId
+			, "page.id"          = eventDetailId
 			, "regions.id"       = relatedRegions
 		};
 
@@ -72,7 +76,7 @@ component {
 	public query function getLatestEvents( required string eventIds ){
 		var selectFields              = [ "page.id", "page.title" ];
 		var filter                    = "page.id IN (:page.id) AND event_detail.end_date > :event_detail.end_date";
-		var eventIdArray              = listToArray( arguments.eventIds );
+		var eventIdArray              = listToArray( eventIds );
 		var escSingleQuotEventIdArray = eventIdArray.map( function( item ){
 			return "'" & replace( item, "'", "\'", "ALL" ) & "'";
 		} );
@@ -80,15 +84,22 @@ component {
 			  "page.id"               = eventIdArray
 			, "event_detail.end_date" = now()
 		};
-		var orderBy                   = "FIELD( page.id, " & REReplace( escSingleQuotEventIdArray.toString(), "(\[|\])", "", "ALL") & ") ASC";
+		var orderBy                   =  "FIELD( page.id, " 
+			                           & REReplace( escSingleQuotEventIdArray.toString(), "(\[|\])", "", "ALL")
+			                           & ") ASC";
 
-		return _getEventDetail().selectData( selectFields=selectFields, filter=filter, filterParams=filterParams, orderBy=orderBy );
+		return _getEventDetail().selectData(
+			  selectFields = selectFields
+			, filter       = filter
+			, filterParams = filterParams
+			, orderBy      = orderBy
+		);
 	}
 
 	public query function getSessionsByEventId( required string eventId ){
 		return _getEventDetail().selectData( 
-			selectFields=[ "event_session.label", "event_session.id" ]
-			, filter={ "event_detail.id"=arguments.eventId }
+			  selectFields = [ "event_session.label", "event_session.id" ]
+			, filter       = { "event_detail.id"=eventId }
 		);
 	}
 
@@ -101,22 +112,26 @@ component {
 			, "booking.priceInMYR AS feeChargedInMYR"
 		];
 
-		return _getEventDetail().selectData( selectFields=selectFields, filter={ "event_detail.id"=eventId }, groupBy="booking.id" );
+		return _getEventDetail().selectData(
+			  selectFields = selectFields
+			, filter       = { "event_detail.id"=eventId }
+			, groupBy      = "booking.id"
+		);
 	}
 
 	public numeric function getPricePerSeatByEventId( required string eventId ){
 		var pricePerSeat = _getEventDetail().selectData(
-			selectFields=[ "event_detail.price" ]
-			, filter={ "event_detail.id"=arguments.eventId }
+			  selectFields = [ "event_detail.price" ]
+			, filter       = { "event_detail.id"=eventId }
 		).price;
 
 		return val( pricePerSeat );
 	}
 
-	public numeric function getRemainingSeatCountByEventId( required string eventId ){
+	public boolean function getRemainingSeatCountByEventId( required string eventId ){
 		var selectFields = [
-			  "booking.seat_count AS seatBooked"
-			, "event_detail.seat_limit   AS seatLimit"
+			  "booking.seat_count      AS seatBooked"
+			, "event_detail.seat_limit AS seatLimit"
 		];
 		var seatInfo     = _getEventDetail().selectData(
 			  selectFields = selectFields
@@ -136,12 +151,20 @@ component {
 	}
 
 	public string function getEventNameById( required string eventId ){
-		return _getEventDetail().selectData( selectFields=[ "event_name" ], filter={ "id"=eventId } ).event_name?:"";
+		return _getEventDetail().selectData(
+			  selectFields = [ "event_name" ]
+			, filter       = { "id"=eventId }
+		).event_name?:"";
 	}
 
 	public boolean function isEventExpired( required string eventId ){
-		var selectFields = [ "(event_detail.end_date < '" & dateFormat( now(), "yyyy-mm-dd" ) & "') as isExpired" ];
-		return _getEventDetail().selectData( selectFields=selectFields, filter={ "event_detail.id"=eventId } ).isExpired?:true;
+		var dateString   = dateFormat( now(), "yyyy-mm-dd" );
+		var selectFields = [ "(event_detail.end_date < '" & dateString & "') as isExpired" ];
+
+		return _getEventDetail().selectData(
+			  selectFields = selectFields
+			, filter       = { "event_detail.id"=eventId }
+		).isExpired?:true;
 	}
 
 	public boolean function isValidEventId( required string eventId ){
@@ -150,9 +173,9 @@ component {
 
 	public boolean function isEventBookeable( required string eventId ){
 		return _getEventDetail().selectData(
-			  selectFields=[ "event_detail.bookeable" ]
-			, filter={ "page.id"=eventId }
-		).bookeable == '1' ? true : false;
+			  selectFields = [ "event_detail.bookeable" ]
+			, filter       = { "page.id"=eventId }
+		).bookeable == '1';
 	}
 
 	public boolean function isSeatFullyBooked( required string eventId ){

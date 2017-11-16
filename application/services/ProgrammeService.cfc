@@ -4,14 +4,14 @@ component {
 	 */
 
 	public any function init( required any programme ){
-		_setProgramme( arguments.programme );
+		_setProgramme( programme );
 
 		return this;
 	}
 
 	public query function getProgrammes( required string eventPageId ){
 		var selectFields = [ "programme.label", "programme.start_datetime" ];
-		var filter       = { "event_detail.id" = arguments.eventPageId };
+		var filter       = { "event_detail.id" = eventPageId };
 
 		return _getProgramme().selectData( selectFields=selectFields, filter=filter );
 	}

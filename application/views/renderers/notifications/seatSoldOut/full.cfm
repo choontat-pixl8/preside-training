@@ -16,6 +16,7 @@
 					<th>Price (MYR)</th>
 				</tr>
 			</thead>
+			
 			<tbody>
 				<cfloop query="#bookersDetail#">
 					<tr>

@@ -26,10 +26,9 @@
 					#args.event.documentTitle#
 				</a>
 
-				<BR/><BR/>
+				<br/><br/>
 
 				<img src="#event.buildLink( assetId=args.documentId, derivative="pdfPreview")#" alt="#args.event.documentTitle#" />
-
 		</cfif>
 
 		<div id="disqus_thread"></div>
@@ -46,7 +45,5 @@
 					Book now!
 			</a>
 		</cfif>
-		
 	</cfif>
-
 </cfoutput>
