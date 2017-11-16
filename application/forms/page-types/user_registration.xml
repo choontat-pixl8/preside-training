@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form i18nBaseUri="page-types.user_registration:">
+	<tab id="messages">
+		<fieldset id="user_registration">
+			<field name="success_message" />
+			<field name="error_message" />
+		</fieldset>
+	</tab>
+</form>

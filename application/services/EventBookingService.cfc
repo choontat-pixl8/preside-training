@@ -10,7 +10,10 @@ component {
 	}
 
 	public string function makeBooking( required struct bookingDetail ){
-		var insertedId = _getBookingDetail().insertData( data=bookingDetail, insertManyToManyRecords=true );
+		var insertedId = _getBookingDetail().insertData(
+			  data                    = bookingDetail
+			, insertManyToManyRecords = true
+		);
 		
 		return insertedId;
 	}
@@ -23,16 +26,19 @@ component {
 			, "seat_count"
 			, "priceInMYR"
 			, "special_request"
-			, "event_session.label as event_sessions"
+			, "event_session.label AS event_sessions"
 		];
-		var bookingDetailQuery = _getBookingDetail().selectData( selectFields=selectFields, filter={ "id"=bookingId } );
+		var bookingDetailQuery = _getBookingDetail().selectData(
+			  selectFields = selectFields
+			, filter       = { "id"=bookingId }
+		);
 
-		if (bookingDetailQuery.recordCount == 0) {
+		if ( bookingDetailQuery.recordCount == 0 ) {
 			return {};
 		}
 
-		var eventSessions = valueList( bookingDetailQuery.event_sessions );
-		var bookingDetail = queryGetRow( bookingDetailQuery, 1 );
+		var eventSessions = valueList  ( bookingDetailQuery.event_sessions );
+		var bookingDetail = queryGetRow( bookingDetailQuery, 1             );
 
 		bookingDetail.sessions = eventSessions;
 
@@ -40,7 +46,10 @@ component {
 	}
 
 	public string function getEventIdById( required string bookingId ){
-		return _getBookingDetail().selectData( selectFields=[ "event_detail.id as eventId" ], filter={ "id"=bookingId } ).eventId?:"";
+		return _getBookingDetail().selectData(
+			  selectFields = [ "event_detail.id AS eventId" ]
+			, filter       = { "id"=bookingId }
+		).eventId?:"";
 	}
 
 	public string function getEventNameById( required string bookingId ){
@@ -51,13 +60,19 @@ component {
 	}
 
 	public string function getBookerFullNameById( required string bookingId ){
-		var selectFields       = [ "CONCAT( first_name, ' ', last_name ) AS fullName" ];
+		var selectFields = [ "CONCAT( first_name, ' ', last_name ) AS fullName" ];
 
-		return _getBookingDetail().selectData( selectFields=selectFields, filter={ "id"=bookingId } ).fullName?:"no name";
+		return _getBookingDetail().selectData(
+			  selectFields = selectFields
+			, filter       = { "id"=bookingId }
+		).fullName?:"";
 	}
 
 	public string function getRecipientEmailAddressById( required string bookingId ){
-		return _getBookingDetail().selectData( selectFields=[ "email" ], filter={ "id"=bookingId } ).email?:"";
+		return _getBookingDetail().selectData(
+			  selectFields = [ "email" ]
+			, filter       = { "id"=bookingId }
+		).email?:"";
 	}
 
 	private any function _getBookingDetail(){

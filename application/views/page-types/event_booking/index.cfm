@@ -23,13 +23,13 @@
 				action = "#event.buildLink( linkTo="page-types.event_booking.makeBooking" )#"
 				class  = "form form-horizontal"
 				method = "POST">
-				#renderForm(
-					formName = "event.booking"
-					, context = "website"
-					, formId = "booking-form"
-					, validationResult = rc.validationResult?:""
-					, savedData = rc.formData?:{}
-				)#
+					#renderForm(
+						  formName         = "event.booking"
+						, context          = "website"
+						, formId           = "booking-form"
+						, validationResult = rc.validationResult?:""
+						, savedData        = rc.formData?:{}
+					)#
 				<input type="hidden" name="eventId" value="#encodeForHTMLAttribute( rc.eventId?:"" )#" />
 				<center>
 					<button class="btn btn-success">Book</button>

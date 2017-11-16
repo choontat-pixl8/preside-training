@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+	<tab id="basic">
+		<fieldset id="basic">
+			<field binding="website_user.gender" sortorder="50"  />
+		</fieldset>
+	</tab>
+</form>

@@ -2,6 +2,7 @@
 <cfparam name="args.description" default="" />
 
 <cfset latestEvents = args.eventDetails />
+
 <h2>Latest Events</h2>
 <ul>
 	<cfoutput query="latestEvents">

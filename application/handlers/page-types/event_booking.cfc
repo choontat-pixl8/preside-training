@@ -1,5 +1,4 @@
 component {
-	property name="formsService"        inject="formsService";
 	property name="eventService"        inject="EventService";
 	property name="eventBookingService" inject="EventBookingService";
 	property name="emailService"        inject="EmailService";
@@ -22,7 +21,12 @@ component {
 	}
 
 	public function makeBooking( event, rc, prc, args={} ){
-		var formData         = event.getCollectionForForm( "event.booking" );
+		var formData = event.getCollectionForForm( "event.booking" );
+
+		for ( var data in formData ) {
+			formData[ data ] = filterHTML( formData[ data ] );
+		}
+
 		var validationResult = validateForm( "event.booking", formData );
 		var validInputs      = ( len ( validationResult.listErrorFields() ) == 0 );
 		var seatFullyBooked  = eventService.isSeatFullyBooked( rc.eventId?:"" );

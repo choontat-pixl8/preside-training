@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form i18nBaseUri="user.registration:">
+	<tab id="user_registration">
+		<fieldset id="personal_info">
+			<field name="display_name" required="true" >
+				<rule validator="match" message="user.registration:validation.error.displayName.format" >
+					<param name="regex" value="^[a-zA-Z](( |)[a-zA-Z]+)+$" />
+				</rule>
+			</field>
+
+			<field name="email"  control="emailInput"    required="true" />
+			<field name="gender" control="enumRadioList" enum="gender"   />
+		</fieldset>
+
+		<fieldset id="password">
+			<field name="password"         control="password" required="true" minLength="6" />
+
+			<field name="confirm_password" control="password" required="true" minLength="6" >
+				<rule validator="sameAs" message="user.registration:validation.error.password.mismatch">
+					<param name="field" value="password" />
+				</rule>
+			</field>
+		</fieldset>
+
+	</tab>
+</form>

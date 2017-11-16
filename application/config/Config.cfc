@@ -15,7 +15,9 @@ component extends="preside.system.config.Config" {
 		settings.ckeditor.defaults.stylesheets.append( "css-bootstrap" );
 		settings.ckeditor.defaults.stylesheets.append( "css-layout" );
 
-		settings.features.websiteUsers.enabled = false;
+		settings.features.websiteUsers.enabled = true;
+
+		settings.enum.gender = [ "Male", "Female" ];
 
 		settings.assetmanager.derivatives.pdfPreview = {
 			  permissions = "inherit"
@@ -37,7 +39,7 @@ component extends="preside.system.config.Config" {
 		};
 
 		settings.notificationTopics.append( "eventBooked" );
-		//settings.notificationTopics.append( "seatSoldOut" );
+		settings.notificationTopics.append( "seatSoldOut" );
 
 		_setupInterceptors();
 
