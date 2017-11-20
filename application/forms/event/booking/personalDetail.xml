@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form i18nBaseUri="event.booking:">
+	<tab id="personalDetail">
+		<fieldset id="personalDetail">
+			<field name="first_name" required="true">
+				<rule validator="match" message="formbuilder.item-types.formfield:validation.error.invalid.name.format">
+					<param name="regex" value="^[a-zA-Z ]{3,50}$" />
+				</rule>
+			</field>
+
+			<field name="last_name" required="true">
+				<rule validator="match" message="formbuilder.item-types.formfield:validation.error.invalid.name.format">
+					<param name="regex" value="^[a-zA-Z ]{3,50}$" />
+				</rule>
+			</field>
+
+			<field name="email" control="emailInput" required="true">
+				<rule validator="match" message="page-types.event_booking:validation.error.invalid.email.format">
+					<param 
+						name="regex" 
+						value="^[a-zA-Z0-9](([!#$%&amp;'*+-/=?^_`{\|}~]|)[a-zA-Z0-9]){0,}@[a-zA-Z0-9]((-|\.|)[a-zA-Z0-9]){0,}$" />
+				</rule>
+			</field>
+		</fieldset>
+	</tab>
+</form>

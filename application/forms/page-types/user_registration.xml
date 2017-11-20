@@ -3,7 +3,7 @@
 	<tab id="messages">
 		<fieldset id="user_registration">
 			<field name="success_message" />
-			<field name="error_message" />
+			<field name="error_message"   />
 		</fieldset>
 	</tab>
 </form>

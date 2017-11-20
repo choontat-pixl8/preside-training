@@ -20,8 +20,8 @@
 					  formName         = "user.registration"
 					, context          = "website"
 					, formId           = "user-registration-form"
-					, validationResult = rc.validationResult?:""
-					, savedData        = rc.formData?:{}
+					, validationResult = rc.validationResult ?: ""
+					, savedData        = rc.formData         ?: {}
 				)#
 			<center>
 				<button class="btn btn-success">Register</button>
