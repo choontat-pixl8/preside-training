@@ -1,6 +1,5 @@
 /**
- * @allowedChildPageType none
- * @allowedParentPageTypes none
+ *  @dataManagerGroup	booking
  */
 component  {
 	property name="label"              required="true" dbtype="varchar" default="Event Booking";
