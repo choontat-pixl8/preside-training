@@ -2,8 +2,8 @@
 <form i18nBaseUri="widgets.latest_event:">
 	<tab>
 		<fieldset>
-			<field name="title"  required="true"                                                              />
-			<field name="events" control="objectPicker" multiple="true" object="event_detail" sortable="true" />
+			<field name="title"  required="true"                                                                              />
+			<field name="events"                 control="objectPicker" multiple="true" object="event_detail" sortable="true" />
 		</fieldset>
 	</tab>
 </form>

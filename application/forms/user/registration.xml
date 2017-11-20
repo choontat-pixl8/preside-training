@@ -8,8 +8,8 @@
 				</rule>
 			</field>
 
-			<field name="email"  control="emailInput"    required="true" />
-			<field name="gender" control="enumRadioList" enum="gender"   />
+			<field name="email"  control="emailInput"    required="true"               />
+			<field name="gender" control="enumRadioList"                 enum="gender" />
 		</fieldset>
 
 		<fieldset id="password">

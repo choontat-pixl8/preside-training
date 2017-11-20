@@ -9,8 +9,8 @@
 	#args.main_content#
 
 	<cfif args.validEventId?:false>
-		<cfif isDefined("rc.success")>
-			<cfif rc.success>
+		<cfif isDefined("rc.success") OR isDefined("rc.finish")>
+			<cfif rc.success?:rc.finish>
 				<div class="alert alert-success">#encodeForHTML(args.success_message)#</div>
 			<cfelse>
 				<div class="alert alert-danger">#encodeForHTML(args.error_message)#</div>
@@ -18,23 +18,26 @@
 		<cfelseif event.fullyBooked( args.id?:"" )>
 			<div class="alert alert-warning">Seat fully booked</div>
 		<cfelse>
-			<form 
-				id     = "booking-form"
-				action = "#event.buildLink( linkTo="page-types.event_booking.makeBooking" )#"
-				class  = "form form-horizontal"
-				method = "POST">
-					#renderForm(
-						  formName         = "event.booking"
-						, context          = "website"
-						, formId           = "booking-form"
-						, validationResult = rc.validationResult?:""
-						, savedData        = rc.formData?:{}
-					)#
-				<input type="hidden" name="eventId" value="#encodeForHTMLAttribute( rc.eventId?:"" )#" />
-				<center>
-					<button class="btn btn-success">Book</button>
-				</center>
-			</form>
+			#renderView( view="page-types/event_booking/_formStep", args=args )#
+			<!---
+				<form 
+					id     = "booking-form"
+					action = "#event.buildLink( linkTo="page-types.event_booking.makeBooking" )#"
+					class  = "form form-horizontal"
+					method = "POST">
+						#renderForm(
+							  formName         = "event.booking"
+							, context          = "website"
+							, formId           = "booking-form"
+							, validationResult = rc.validationResult?:""
+							, savedData        = rc.formData?:{}
+						)#
+					<input type="hidden" name="eventId" value="#encodeForHTMLAttribute( rc.eventId?:"" )#" />
+					<center>
+						<button class="btn btn-success">Book</button>
+					</center>
+				</form>
+			--->
 		</cfif>
 	<cfelseif args.seatFullyBooked>
 		<div class="alert alert-warning">Seat fully booked</div>

@@ -5,9 +5,9 @@ component extends="coldbox.system.Interceptor" {
 	property name="eventBookingService"  inject="provider:EventBookingService";
 
 	public void function postInsertObjectData( required any event, required struct interceptData ){
-		var objectName       = arguments.interceptData.objectName ? :"";
-		var data             = arguments.interceptData.data       ? :"";
-		var newBookingId     = arguments.interceptData.newId      ? :"";
+		var objectName       = arguments.interceptData.objectName ?:"";
+		var data             = arguments.interceptData.data       ?:"";
+		var newBookingId     = arguments.interceptData.newId      ?:"";
 		var skipInterception = isBoolean(data.skipInterception?:"") && data.skipInterception;
 		var eventId          = eventBookingService.getEventIdById( newBookingId );
 

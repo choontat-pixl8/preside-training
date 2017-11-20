@@ -12,9 +12,9 @@
 			<field binding="event_detail.document"       control="assetPicker" allowedTypes="pdf" />
 		</fieldset>
 		<fieldset id="booking_detail">
-			<field binding="event_detail.bookeable"                          />
-			<field binding="event_detail.price" minValue="0" maxValue="1000" />	
-			<field binding="event_detail.seat_limit"                         />	
+			<field binding="event_detail.bookeable"                               />
+			<field binding="event_detail.price"      minValue="0" maxValue="1000" />	
+			<field binding="event_detail.seat_limit"                              />	
 		</fieldset>
 	</tab>
 </form>
