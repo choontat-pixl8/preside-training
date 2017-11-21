@@ -1,0 +1,3 @@
+[submodule "application/extensions/preside-ext-resource-library"]
+	path = application/extensions/preside-ext-resource-library
+	url = git@pixl8.git.beanstalkapp.com:/pixl8/preside-ext-resource-library.git

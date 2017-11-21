@@ -5,6 +5,7 @@
 	maxSeatCount  = args.maxValue      ?: 0;
 	requiredField = args.required      ?: false;
 	inputName     = args.name          ?: "";
+	value         = args.savedData.seat_count?:0;
 
 	if ( remainingSeat < maxSeatCount && remainingSeat > 0 ) {
 		maxSeatCount = remainingSeat;
@@ -15,10 +16,11 @@
 	<input 
 		id             = "seat-selector"
 		name           = "#inputName#"
+		value          = "#value#"
 		type           = "number"
 		class          = "form-control"
 		min            = "#minSeatCount#"
-		max            = "#maxSeatCount#" 
+		max            = "#maxSeatCount#"
 		#requiredField ? "required" : ""# />
 	<label>
 		Total: MYR
@@ -54,6 +56,9 @@
 
 			seatSelector.addEventListener( 'change', updateTotalPrice );
 			seatSelector.addEventListener( 'keyup', updateTotalPrice );
+
+			seatSelector.dispatchEvent( new Event( 'change' ) );
+
 		})();
 	</script>
 </cfoutput>

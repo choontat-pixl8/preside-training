@@ -39,7 +39,7 @@ component {
 		setNextEvent(
 			  url           = event.buildLink( page="user_registration" )
 			, persistStruct = {
-				  success = registrationSuccess
+				  success          = registrationSuccess
 				, validationResult = validationResult
 			}
 		 );

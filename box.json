@@ -3,12 +3,16 @@
     "version":"1.0.0",
     "author":"Choon Tat",
     "slug":"practicepreside",
-    "createPackageDirectory" : false,
+    "createPackageDirectory":false,
     "private":true,
     "installPaths":{
-        "presidecms":"preside"
+        "presidecms":"preside",
+        "preside-ext-resource-library":"application/extensions/preside-ext-resource-library",
+        "preside-ext-elasticsearch":"application/extensions/preside-ext-elasticsearch"
     },
     "dependencies":{
-        "presidecms":"stable"
+        "presidecms":"stable",
+        "preside-ext-resource-library":"^1.0.0",
+        "preside-ext-elasticsearch":"^1.0.22"
     }
 }
