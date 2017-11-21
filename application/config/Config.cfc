@@ -17,6 +17,9 @@ component extends="preside.system.config.Config" {
 
 		settings.features.websiteUsers.enabled = true;
 
+		
+		settings.features.formbuilder.enabled = true;
+
 		settings.enum.gender = [ "Male", "Female" ];
 
 		settings.assetmanager.derivatives.pdfPreview = {
