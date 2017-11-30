@@ -3,6 +3,19 @@ component {
 	property name="EventService"     inject="EventService";
 	property name="ProgrammeService" inject="ProgrammeService";
 
+	public function publicIndex( event, rc, prc, args={} ){
+		var pageId   = event.getCurrentPageId();
+
+		args.regions = region.selectData();
+		args.events  = EventService.getAllEventsDetail( listingPageId=pageId, regions=rc.region?:"" );
+
+		return renderView(
+			  view          = "page-types/event_listing/index"
+			, args          = args
+			, presideObject = "event_listing"
+		);
+	}
+
 	private function index( event, rc, prc, args={} ){
 
 		var pageId   = event.getCurrentPageId();
