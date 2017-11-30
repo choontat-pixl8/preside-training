@@ -3,13 +3,14 @@ component {
 	 * @bookingDetail.inject presidecms:object:booking
 	 */
 
-	 public any function init( required any bookingDetail ){
+	 public any function init( required booking bookingDetail ){
 		_setBookingDetail( arguments.bookingDetail );
 
 		return this;
 	}
 
 	public string function makeBooking( required struct bookingDetail ){
+		//writeDump(bookingDetail);abort;
 		var insertedId = _getBookingDetail().insertData(
 			  data                    = bookingDetail
 			, insertManyToManyRecords = true

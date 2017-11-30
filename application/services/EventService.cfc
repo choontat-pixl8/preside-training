@@ -5,7 +5,7 @@ component {
 
 	public any function init( required any eventDetail ){
 		_setEventDetail( arguments.eventDetail );
-
+		
 		return this;
 	}
 
