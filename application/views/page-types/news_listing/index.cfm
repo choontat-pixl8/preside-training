@@ -1,22 +1,6 @@
 <h2>News List</h2>
 <div id="news_list">
-<<<<<<< HEAD
 	<cfoutput query="args.newsList">
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-	<cfoutput query="#args.newsList#">
-=======
-	<cfoutput query="args.newsList">
->>>>>>> feature-practice-10-extensions
-=======
-<<<<<<< Updated upstream
-	<cfoutput query="args.newsList">
-=======
-	<cfoutput query="#args.newsList#">
->>>>>>> Stashed changes
->>>>>>> feature-practice-10-extensions
->>>>>>> release-1.4.0
 		<div class="jumbotron">
 			<a href="#event.buildLink( linkTo="news/"&args.newsList.news_slug )#">#args.newsList.title#</a>
 		</div>
