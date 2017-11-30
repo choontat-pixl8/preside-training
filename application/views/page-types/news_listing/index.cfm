@@ -1,10 +1,6 @@
 <h2>News List</h2>
 <div id="news_list">
-<<<<<<< HEAD
-	<cfoutput query="#args.newsList#">
-=======
 	<cfoutput query="args.newsList">
->>>>>>> feature-practice-10-extensions
 		<div class="jumbotron">
 			<a href="#event.buildLink( linkTo="news/"&args.newsList.news_slug )#">#args.newsList.title#</a>
 		</div>
