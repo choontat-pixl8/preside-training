@@ -4,6 +4,7 @@
 		<fieldset id="news_detail">
 			<field binding="news_detail.label" />
 			<field binding="news_detail.content"   control="richEditor" />
+			<field binding="news_detail.category" />
 		</fieldset>
 	</tab>
 </form>

@@ -3,6 +3,19 @@
 	<tab>
 		<fieldset>
 			<field name="shortname" />
+			<field name="label" required="true" help="system-config.disqus:sample-help">
+				<rule validator="disqusIdType" message="system-config.disqus:validation.error.invalid.label">
+					<param name="test" value="hello from form param" />
+					<param name="custom" value="&lt;br/&gt;" />
+				</rule>
+			</field>
+			<field name="idType" control="select" values="id,email" defaultValue="email">
+				<rule validator="disqusIdType" message="system-config.disqus:validation.error.invalid.label">
+					<param name="test" value="test123" />
+				</rule>
+			</field>
+			<field name="type_id"    />
+			<field name="type_email" />
 		</fieldset>
 	</tab>
 </form>

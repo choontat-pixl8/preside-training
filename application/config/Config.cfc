@@ -47,6 +47,8 @@ component extends="preside.system.config.Config" {
 		_setupInterceptors();
 
 		coldbox.requestContextDecorator = "app.decorators.RequestContextDecorator";
+
+		settings.validationProviders.append( "CustomValidator" );
 	}
 
 	private void function _setupInterceptors(){

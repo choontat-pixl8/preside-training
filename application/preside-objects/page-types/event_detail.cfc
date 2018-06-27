@@ -7,7 +7,7 @@
 component {
 	property name="event_listing"  relatedto="event_listing" relationship="many-to-one";
 	property name="regions"        relatedto="region"        relationship="many-to-many";
-	property name="category"       relatedto="category"      relationship="many-to-one";
+	property name="category"       relatedto="category"      relationship="many-to-one" searchEnabled=true searchSearchable=false;
 	property name="event_sessions" relatedto="event_session" relationship="one-to-many" relationshipkey="event_detail";
 	property name="document"       relatedTo="asset"         relationship="many-to-one";
 	property name="programmes"     relatedto="programme"     relationship="one-to-many"  relationshipkey="event_detail";

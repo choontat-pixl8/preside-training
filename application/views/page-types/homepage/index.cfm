@@ -3,10 +3,10 @@
 <cfparam name="args.main_content"   type="string" field="page.main_content"   editable="true" />
 
 <cfoutput>
+	#renderView( view="page-types/search/_search_field", args=args )#
 	<div class="jumbotron">
 		<h1>#args.title#</h1>
 	</div>
-
 	#args.main_content#
 	<br/>
 	#args.bottom_content#

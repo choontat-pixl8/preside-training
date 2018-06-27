@@ -1,4 +1,6 @@
 component {
+	property name="newsService" inject="newsService";
+
 	public any function init(){
 		return this;
 	}
@@ -19,11 +21,20 @@ component {
 	}
 
 	public boolean function reverseMatch( required struct buildArgs, required any event ){
+		var newsSlug = newsService.getNewsSlugById( buildArgs.page?:"" );
+
+		if ( !isEmpty( newsSlug ) ) {
+			buildArgs.linkTo = "news/#newsSlug#";
+			return true;
+		}
+
 		return REFind( "^(\/|)news\/", buildArgs.linkTo?:"" ) == 1;
 	}
 
 	public string function build( required struct buildArgs, required any event ){
-		return "#buildArgs.linkTo?:""#.html";
+		var htmlExtensionAppended = REFind( "\.html$", buildArgs.linkTo?:"" );
+
+		return ( buildArgs.linkTo?:"" ) & ( htmlExtensionAppended > 0?"":".html" );
 	}
 
 	private string function _getNewsSlug( required string slug ){

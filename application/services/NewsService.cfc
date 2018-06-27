@@ -52,6 +52,16 @@ component {
 		return {};
 	}
 
+	public string function getNewsSlugById( required string newsId ){
+		var selectFields = [ "news_detail.news_slug AS newsSlug" ];
+		var newsDetailQuery = _getNewsDetail().selectData(
+			  selectFields = selectFields
+			, filter       = { "news_detail.id"=arguments.newsId }
+		);
+
+		return newsDetailQuery.newsSlug?:"";
+	}
+
 	private void function _setNewsDetail( required any newsDetail ){
 		variables._newsDetail = arguments.newsDetail;
 	}

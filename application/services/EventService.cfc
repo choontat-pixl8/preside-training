@@ -9,6 +9,10 @@ component {
 		return this;
 	}
 
+	public boolean function works(){
+		return true;
+	}
+
 	public query function getEventDetail( required string id ){
 		return _getEventDetail().selectData(
 			selectFields = [

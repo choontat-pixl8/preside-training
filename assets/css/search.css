@@ -1,0 +1,15 @@
+#filterEventDetail~table tr.event-detail{
+	display: none;
+}
+
+#filterEventDetail:checked~table tr.event-detail{
+	display: table-row;
+}
+
+#filterNewsDetail~table tr.news-detail{
+	display: none;
+}
+
+#filterNewsDetail:checked~table tr.news-detail{
+	display: table-row;
+}
